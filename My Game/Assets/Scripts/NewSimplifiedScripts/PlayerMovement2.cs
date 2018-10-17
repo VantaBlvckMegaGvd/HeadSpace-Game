@@ -68,7 +68,7 @@ public class PlayerMovement2 : MonoBehaviour
     void JumpGood()
     {
         Vector3 jumpup = new Vector3(0f, jump, 0f);
-        Player.AddForce(jumpup, ForceMode.Acceleration);
+        Player.AddForce(jumpup, ForceMode.Impulse);
     }
 
     public void LoadSpaceShift(SpaceShift spaceShift)
