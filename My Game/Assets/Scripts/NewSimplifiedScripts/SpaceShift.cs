@@ -11,7 +11,8 @@ public class SpaceShift : ScriptableObject
     public float moveSpeed;
     public float jump;
     public int health;
-
+    public float minRange;
+    public float maxRange;
 
     
 }

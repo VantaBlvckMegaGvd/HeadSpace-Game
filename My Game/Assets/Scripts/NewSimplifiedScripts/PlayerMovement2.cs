@@ -29,11 +29,12 @@ public class PlayerMovement2 : MonoBehaviour
     void Update()
     {
 
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
         Vector2 horizontalmovement = new Vector3(horizontal, 0f, 0f);
         transform.Translate(horizontalmovement * Time.deltaTime * moveSpeed);
 
+        
         if (Input.GetMouseButtonDown(1))
         {
             Fired();
@@ -52,8 +53,17 @@ public class PlayerMovement2 : MonoBehaviour
 
     void Fired()
     {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
         var bullet = GameObject.Instantiate(bullet2Prefab, bulletSpawn.position, bulletRotation.rotation);
-        bullet.GetComponent<Rigidbody>().velocity = bullet.transform.forward * bulletSpeed;
+        bullet.GetComponent<Rigidbody>().velocity =  bullet.transform.forward * bulletSpeed;
+        if (horizontal<0)
+        {
+            bullet.GetComponent<Rigidbody>().velocity = -bullet.transform.forward * bulletSpeed;
+        }
+
+      
 
         Destroy(bullet, 4.0f);
     }

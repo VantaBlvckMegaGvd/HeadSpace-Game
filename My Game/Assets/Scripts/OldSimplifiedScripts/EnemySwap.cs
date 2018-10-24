@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class EnemySwap : MonoBehaviour
 {
-    public SpaceShift shifted;
-    public SpaceShift reverted;
+    public EnemyAttackRotation shifted;
+    public EnemyAttackRotation reverted;
    
 
     void OnTriggerEnter(Collider other)
@@ -20,14 +20,13 @@ public class EnemySwap : MonoBehaviour
     }
     IEnumerator EnemyUp(Collider enemy)
     {
-        enemy.GetComponent<EnemyShift>().LoadSpaceShift(shifted);
-
+        enemy.GetComponent<EnemyState>().LoadEnemyAttackRotation(shifted);
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
 
         yield return new WaitForSeconds(10f);
         Destroy(gameObject);
-        enemy.GetComponent<EnemyShift>().LoadSpaceShift(reverted);
+        enemy.GetComponent<EnemyState>().LoadEnemyAttackRotation(reverted);
 
     }
 
